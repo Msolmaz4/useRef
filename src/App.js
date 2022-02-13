@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import React,{useRef} from 'react'
 import './App.css';
 
 function App() {
+const inputRef=useRef()
+
+const inputChange=(e)=>{
+  inputRef.current.value =e.target.value
+}
+
+const submitButton=()=>{
+console.log( inputRef.current.value)
+}
+
+const clearButton=()=>{
+  inputRef.current.value=''
+}
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input onChange={inputChange} ref={inputRef}></input>
+      <button onClick={submitButton}>Submit</button>
+      <button onClick={clearButton}>Clear</button>
+      
     </div>
   );
 }
